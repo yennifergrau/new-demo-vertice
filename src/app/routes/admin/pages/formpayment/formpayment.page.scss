@@ -1,0 +1,86 @@
+  .bottom-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: start;
+  }
+
+  .payment-card .card-content {
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+
+  select#document_prefix {
+    height: 100%;
+    background: white;
+    border-radius: 0 !important;
+    border-left: 0px !important;
+    border-right: 0px !important;
+    .input-group:focus-within & {
+      border-color: #ffb000 !important;
+    }
+  }
+
+  input {
+    .input-group:focus-within & {
+      border-color: #ffb000 !important;
+    }
+  }
+
+  .invalid-input{
+    border: 2px solid red !important;
+  background-color: #f8d7da;
+  }
+
+  
+.offcanvas-body {
+    overflow: hidden;
+  }
+  
+  .ic-bank-list {
+    display: flex;
+    align-items: center;
+    gap: 20px; 
+    flex-wrap: nowrap; 
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+  
+    li {
+      flex: 0 0 auto;
+      list-style: none;
+  
+      img {
+        width: 100px;
+        height: auto;
+        display: block;
+      }
+    }
+  
+    @keyframes scrollBanks {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+  
+    animation: scrollBanks 20s linear infinite; 
+  }
+  
+  .ic-bank-list::after {
+    content: "";
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 100%;
+    animation: scrollBanks 20s linear infinite;
+  }
+  
+  .mts{
+    margin: 10px;
+  }
+
+  .text-dark {
+  color: #ffffff !important;
+}

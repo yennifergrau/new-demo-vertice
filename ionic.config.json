@@ -1,0 +1,7 @@
+{
+  "name": "vertice",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

@@ -1,0 +1,488 @@
+<div class="overflow-auto">
+  <div class="page-wrapper scroll full-height">
+    <header class="header header-fixed style-1">
+      <div class="header-content">
+        <div class="mid-content"><h5 class="title">Datos del Propietario</h5></div>
+        <div class="right-content"></div>
+      </div>
+    </header>
+
+    @if(showLoading){
+      <app-loading />
+    }
+
+    <main class="page-content space-top p-b70">
+      
+      <div class="container px-2 pb-2">
+        <div class="card style-2">
+          <div class="card-header"></div>
+          <div class="card-body">
+            <form class="ic-form-group" [formGroup]="formGroup" (ngSubmit)="onSubmit()" #cotizadorForm="ngForm">
+              <div class="ic-list m-b20">
+                <div class="card style-2">
+                  <label class="card-body vehicleOwnership flex items-center gap-2">
+                   <input type="checkbox" formControlName="isTomador" />
+                    <span class="text-whiter">¿Usted es el dueño del vehículo que desea asegurar?</span>
+                  </label>
+                </div>
+              </div>
+              
+              <div *ngIf="formGroup.get('isTomador')?.value" formGroupName="generalData">
+                <h6 class="card-title">Datos del Tomador/Titular</h6>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <select class="form-control" formControlName="policy_holder_type_document" required>
+                        <option value="" disabled selected> documento</option>
+                        <option value="V">V - Venezolano</option>
+                        <option value="E">E - Extranjero</option>
+                        <option value="J">J - Jurídico</option>
+                        <option value="G">G - Gubernamental</option>
+                        <option value="P">P - Pasaporte</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <input 
+                        type="text" 
+                        class="form-control" 
+                        placeholder="Cédula o RIF" 
+                        formControlName="policy_holder_document_number"
+                        required>								
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <input        
+                        type="text"
+                        class="form-control"
+                        placeholder="Nombre" 
+                        formControlName="policy_holder"
+                        maxlength="30"
+                        required>								
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <input 
+                        type="tel" 
+                        class="form-control" 
+                        placeholder="Teléfono" 
+                        mask="(999) 999-9999"
+                        prefix="+58 "
+                        formControlName="policy_holder_phone"
+                        
+                        required>								
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <input 
+                        type="email" 
+                        class="form-control" 
+                        placeholder="Correo electrónico" 
+                        formControlName="policy_holder_email"
+                        maxlength="50"
+                        required>								
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <input type="text" class="form-control" placeholder="Estado" 
+                        formControlName="policy_holder_state" maxlength="50" required>								
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <input type="text" class="form-control" placeholder="Ciudad" 
+                        formControlName="policy_holder_city" maxlength="50" required>								
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <input type="text" class="form-control" placeholder="Municipio" 
+                        formControlName="policy_holder_municipality" maxlength="50">								
+                    </div>
+                  </div>
+                </div>
+
+                <div class="m-b15 input-group input-lg input-rounded">
+                  <input type="text" class="form-control" placeholder="Dirección completa" 
+                    formControlName="policy_holder_address" maxlength="150" required>								
+                </div>
+              </div>
+
+              <div *ngIf="!formGroup.get('isTomador')?.value" formGroupName="generalDataTomador">
+                <h6 class="card-title">Datos del Tomador</h6>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <select class="form-control" formControlName="type_document">
+                        <option value="" disabled selected>documento</option>
+                        <option value="V">V - Venezolano</option>
+                        <option value="E">E - Extranjero</option>
+                        <option value="J">J - Jurídico</option>
+                        <option value="G">G - Gubernamental</option>
+                        <option value="P">P - Pasaporte</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <input type="text" class="form-control" placeholder="Cédula/RIF" 
+                        formControlName="insured_document" maxlength="30">								
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <input type="text" class="form-control" placeholder="Nombre" 
+                        formControlName="insured" maxlength="30">								
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <input type="tel" class="form-control" placeholder="Teléfono" 
+                        mask="(999) 999-9999"
+                        prefix="+58 "
+                        formControlName="insured_phone"
+                        inputmode="numeric"
+                        >								
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <input type="email" class="form-control" placeholder="Correo electrónico" 
+                        formControlName="insured_email" maxlength="50">								
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <input type="text" class="form-control" placeholder="Estado" 
+                        formControlName="insured_state" maxlength="50">								
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <input type="text" class="form-control" placeholder="Ciudad" 
+                        formControlName="insured_city" maxlength="50">								
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <input type="text" class="form-control" placeholder="Municipio" 
+                        formControlName="insured_municipality" maxlength="50">								
+                    </div>
+                  </div>
+                </div>
+
+                <div class="m-b15 input-group input-lg input-rounded">
+                  <input type="text" class="form-control" placeholder="Dirección completa" 
+                    formControlName="insured_address" maxlength="150">								
+                </div>
+
+                <h6 class="card-title">Datos del Titular</h6>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <select class="form-control" formControlName="type_document" required>
+                        <option value="" disabled selected>Tipo de documento</option>
+                        <option value="V">V - Venezolano</option>
+                        <option value="E">E - Extranjero</option>
+                        <option value="J">J - Jurídico</option>
+                        <option value="G">G - Gubernamental</option>
+                        <option value="P">P - Pasaporte</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <input 
+                        type="text" 
+                        class="form-control" 
+                        placeholder="Cédula o RIF" 
+                        formControlName="insured_document"
+                        required>								
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <input        
+                        type="text"
+                        class="form-control"
+                        placeholder="Nombre del Titular" 
+                        formControlName="insured"
+                        maxlength="30"
+                        required>								
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <input 
+                        type="tel" 
+                        class="form-control" 
+                        placeholder="Teléfono" 
+                        mask="(999) 999-9999"
+                        prefix="+58 "         
+                        formControlName="insured_phone"
+                        inputmode="numeric"
+                        required>								
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <input 
+                        type="email" 
+                        class="form-control" 
+                        placeholder="Correo electrónico" 
+                        formControlName="insured_email"
+                        maxlength="50"
+                        required>								
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <input type="text" class="form-control" placeholder="Estado" 
+                        formControlName="insured_state" maxlength="50" required>								
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <input type="text" class="form-control" placeholder="Ciudad" 
+                        formControlName="insured_city" maxlength="50" required>								
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <input type="text" class="form-control" placeholder="Municipio" 
+                        formControlName="insured_municipality" maxlength="50">								
+                    </div>
+                  </div>
+                </div>
+
+                <div class="m-b15 input-group input-lg input-rounded">
+                  <input type="text" class="form-control" placeholder="Dirección completa" 
+                    formControlName="insured_address" maxlength="150" required>								
+                </div>
+              </div>
+
+              <!-- La sección de carData está correcta como está -->
+              <div class="card style-2" formGroupName="carData">
+                <div class="card-header">	
+                  <h6 class="card-title">Datos del Vehículo</h6>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="m-t15 m-b15 input-group input-lg input-rounded" >
+                      <select class="form-control" formControlName="type_plate" required>
+                        <option value="" disabled selected>Tipo de placa</option>
+                        <option value="nacional">Nacional</option>
+                        <option value="extranjera">Extranjera</option>
+                      </select>	
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="m-b15 m-t15 input-group input-lg input-rounded">
+                      <input type="number" inputmode="numeric" class="form-control" placeholder="Año" 
+                        formControlName="year" min="1950" max="2025" required>								
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <input type="text" class="form-control" placeholder="Marca" 
+                        formControlName="brand" required>								
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <input type="text" class="form-control" placeholder="Modelo" 
+                        formControlName="model" required>								
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <input type="text" class="form-control" placeholder="Versión" 
+                        formControlName="version">								
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <input type="text" class="form-control" placeholder="Placa" 
+                        mask="AAA-AAAA"
+                        formControlName="plate">								
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <input type="text" class="form-control" placeholder="Color" 
+                        formControlName="color">								
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                     <select class="form-control" formControlName="gearbox">
+                      <option value="" disabled selected>Transmisión</option>
+                      <option value="Automática">Automática</option>
+                      <option value="Sincrónica">Sincrónica</option>
+                      <option value="semi-automática">semi-automática</option>
+                     </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <input type="text" class="form-control" placeholder="Serial de motor" 
+                        formControlName="motor_serial_number">								
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <input type="text" class="form-control" placeholder="Serial de Carroceria" 
+                        formControlName="carroceria_serial_number">								
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <select class="form-control" formControlName="type_vehiculo" required>
+                        <option value="" disabled selected>Tipo de Vehículo</option>
+                        <option value="particular">Particular</option>
+                        <option value="carga">Carga</option>
+                        <option value="autobus">Autobús</option>
+                        <option value="minibus">Minibús</option>
+                        <option value="rustico">Rústico</option>
+                        <option value="moto">Moto</option>
+                        <option value="motocarro">Motocarro</option>
+                        <option value="maquina">Máquina Móvil</option>
+                      </select>							
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <select class="form-control" formControlName="use">
+                        <option value="" disabled selected>Tipo de Uso</option>
+                        <option value="Hasta 800 kg. de peso">Hasta 800 kg. de peso</option>
+                        <option value="Más de 800 kg. de peso
+">Más de 800 kg. de peso</option>
+                        <option value="Casas Móviles con Tracción propia
+">Casas Móviles con Tracción propia</option>
+                        <option value="Auto – Escuela
+">Auto - Escuela</option>
+                        <option value="Alquiler sin chofer
+">Alquiler sin chofer</option>
+                        <option value="Alquiler con chofer, taxi o por puesto
+">Alquiler con chofer, taxi o por puesto</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div *ngIf="formGroup.get('carData.type_vehiculo')?.value === 'carga'" class="row">
+                  <div class="col-md-6">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <select class="form-control" formControlName="use">
+                        <option value="" disabled selected>Capacidad de carga (TM)</option>
+                        <option value="Hasta 2 TM
+">Hasta 2 TM</option>
+                        <option value="Más de 2 y hasta 5 TM
+">Más de 2 y hasta 5 TM</option>
+                        <option value="Más de 5 hasta 8 TM
+">Más de 5 hasta 8 TM</option>
+                        <option value="Más de 8 hasta 12 TM
+">Más de 8 hasta 12 TM</option>
+                        <option value="Más de 12 TM
+">Más de 12 TM</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div *ngIf="formGroup.get('carData.type_vehiculo')?.value === 'autobus' || 
+                          formGroup.get('carData.type_vehiculo')?.value === 'minibus'" class="row">
+                  <div class="col-md-6">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <select class="form-control" formControlName="use">
+                        <option value="" disabled selected>Subtipo</option>
+                        <option value="Urbano">Urbano</option>
+                        <option value="Suburbano">Suburbano</option>
+                        <option value="Interurbano">Interurbano</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <input type="number" class="form-control" 
+                        inputmode="numeric"
+                        placeholder="Capacidad de pasajeros" 
+                        formControlName="passenger_qty" maxlength="9" required>								
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="m-b15 input-group input-lg input-rounded">
+                      <input type="text" class="form-control" placeholder="Conductor principal" 
+                        formControlName="driver">								
+                    </div>
+                  </div>
+                </div>
+                     <div class="card-header">	
+                <h6 class="card-title">Ajustes</h6>
+              </div>
+
+              <div class="checkbox-group">
+                <label class="checkbox-wrapper m-b50">
+                  <input type="checkbox" class="checkbox"  formControlName="use_grua"
+      >
+                  <span class="label-text">Incluir Servicio de Grúa</span>
+                </label>
+              </div>
+              </div>
+
+         
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div class="footer-fixed-btn m-t30">
+      <button type="button" class="btn btn-lg btn-thin btn-primary text-dark w-100 rounded-xl" 
+        (click)="onSubmit()">Cotizar</button>
+    </div>	
+  </div>  
+</div>
+<div class="toast-container" id="cotizacion"></div>

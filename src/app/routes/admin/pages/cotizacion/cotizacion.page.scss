@@ -1,0 +1,100 @@
+span{
+
+    text-align: left !important; 
+    font-size: 12px;
+}
+
+.scroll{
+    overflow: auto;
+}
+
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.5rem 0.5rem 0.5rem 0;
+  background: transparent;
+  max-width: 100%;
+  align-items: flex-start;
+}
+
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.875rem; // Tamaño más pequeño
+  cursor: pointer;
+
+  input[type="checkbox"] {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    position: relative;
+    margin: 0;
+
+    &:checked {
+      background-color: #3b82f6; // azul
+      border-color: #3b82f6;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 3px;
+        left: 5px;
+        width: 4px;
+        height: 8px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+      }
+    }
+
+    &:hover {
+      border-color: #60a5fa;
+    }
+  }
+
+  .label-text {
+    color: #374151; // Gray-700
+  }
+}
+.text-dark {
+  color: #ffffff !important;
+}
+
+.vehicleOwnership {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* espacio entre el checkbox y el texto */
+}
+
+input.ng-invalid.ng-touched {
+  border-color: red !important;
+  background-color: #ffe6e6; 
+}
+
+.full-height .page-content .container {
+  height: 100vh;
+}
+select#prefijo {
+  height: 100%;
+  background: white;
+  border: none !important;
+}
+
+.dropdown .dropdown-menu {
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 99;
+}
+
+.text-whiter{
+  font-size: 11px;
+  text-align: left !important;
+}

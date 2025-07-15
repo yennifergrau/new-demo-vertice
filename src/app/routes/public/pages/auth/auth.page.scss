@@ -1,0 +1,21 @@
+.text-color-light{
+    color: var(--light);
+}
+
+.btn-link-active{
+    font-size: 12px;
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+.form-check-input{
+    border-color: var(--pink);
+}
+
+.body-bg2 {
+  height: 100vh;
+}
+
+.invalid{
+    background: rgba(255, 137, 137, 0.233);
+}

@@ -1,0 +1,49 @@
+<div class="body-bg2">
+<div class="page-wrapper full-height">
+    @if(showLoading){
+		<app-loading />
+	  }
+	<main class="page-content">
+		<div class="container pt-0 overflow-hidden">
+			<div class="ic-authentication-area ic-flex-box">
+				<div class="logo-area">
+					<app-image />
+				</div>
+				<div class="account-section text-center">
+					<div class="section-head text-center">
+						<h3 class="title px-2">Por favor ingrese la OTP enviada</h3>
+						<p class="text-num"></p>
+					</div>
+					<form  class="ic-form-group">
+            <div class="otp-inputs">
+              <input type="text" maxlength="1" inputmode="numeric" [(ngModel)]="otp[0]" (input)="moveFocus($event, 'otp2')" (keydown)="handleBackspace($event, 'otp1')" id="otp1" name="otp[1]" />
+              <input type="text" maxlength="1" inputmode="numeric" [(ngModel)]="otp[1]" (input)="moveFocus($event, 'otp3')" (keydown)="handleBackspace($event, 'otp2')" id="otp2" name="otp[2]"/>
+              <input type="text" maxlength="1" inputmode="numeric" [(ngModel)]="otp[2]" (input)="moveFocus($event, 'otp4')" (keydown)="handleBackspace($event, 'otp3')" id="otp3" name="otp[3]" />
+              <input type="text" maxlength="1" inputmode="numeric" [(ngModel)]="otp[3]" (input)="moveFocus($event, 'otp5')" (keydown)="handleBackspace($event, 'otp4')" id="otp4" name="otp[4]"/>
+              <input type="text" maxlength="1" inputmode="numeric" [(ngModel)]="otp[4]" (input)="moveFocus($event, 'otp6')" (keydown)="handleBackspace($event, 'otp5')" id="otp5" name="otp[5]"/>
+              <input type="text" maxlength="1" inputmode="numeric" [(ngModel)]="otp[5]" (input)="moveFocus($event, 'otp7')" (keydown)="handleBackspace($event, 'otp6')" id="otp6" name="otp[6]"/>
+              <input type="text" maxlength="1" inputmode="numeric" [(ngModel)]="otp[6]" (input)="moveFocus($event, 'otp8')" (keydown)="handleBackspace($event, 'otp7')" id="otp7" name="otp[7]"/>
+              <input type="text" maxlength="1" inputmode="numeric" [(ngModel)]="otp[7]" (keydown)="handleBackspace($event, 'otp8')" id="otp8" name="otp[8]" />
+            </div>
+						   <div class="account-section text-center">
+   
+               </div>
+              </form>
+              <div class="section-head text-center">
+              <h3 class="t px-1">Ingresa el código enviado a</h3>
+              <p class="text-num num">+58 {{numberContact}}</p>
+            </div>
+				</div>
+				<div class="bottom-btn mt-auto">
+					<button  class="btn btn-primary btn-thin btn-lg w-100 rounded-xl text-color-light"
+					[disabled]="!isOtpComplete()"
+					(click)="onSubmit()"
+					>Verificar y proceder</button>
+					<div class="title">Volver a <a [routerLink]="['/admin/sypago']" class=" text-center text-color-font text-area-font">Inicio</a></div>
+				</div>
+			</div>
+        </div>
+	</main>	
+</div>
+</div>
+<div class="toast-container" id="otp"></div>

@@ -1,0 +1,97 @@
+
+<div class="overflow-auto">
+  <div class="page-wrapper">
+    <header class="header header-fixed style-1">
+      <div class="header-content">
+        <div class="left-content">
+          <a [routerLink]="['/admin/sypago']" class="back-btn ic-icon icon-sm">
+            <i class="feather icon-arrow-left"></i>
+          </a>
+        </div>
+        <div class="mid-content"><h5 class="title">Compartir membresía</h5></div>
+      </div>
+    </header>
+
+
+
+    <div class="page-content space-top">
+          <app-image></app-image>
+      <div class="container p-2">
+        <div class="ic-product-preview">
+          <div class="ic-box style-2 rounded-md">
+            <div class="title-head">
+              <h6 class="font-title">¡Gracias por tu compra!</h6>
+              <p class="title font-15" align="center">N° Póliza: {{data_pdf.numero_poliza}}</p>
+            </div>
+            <div class="title">
+              <p class="font-info">Tu Seguro está listo. Se ha enviado una copia a tu correo para que siempre tengas acceso.
+              </p>
+            </div>
+       
+              <div class="btn gap-3 mt-3 btn-primary text-dark w-100 justify-content-start px-3" type="button" data-bs-toggle="modal" data-bs-target="#notifyModal">
+                  <span>Detalle de compra</span>
+              </div>
+
+              <div class="ic-box style-2 rounded-md">
+                <div class="view-cart">
+                  <ul>
+                    <li>
+                      <span class="name">Plan seleccionado:</span>
+                      <span class="about">RCV</span>
+                    </li>
+                    <li>
+                      <span class="name">Nombre: </span>
+                      <span class="about">{{data_person.name}}</span>
+                    </li>
+                    <li>
+                      <span class="name">Placa: </span>
+                      <span class="about" >{{data_person.plate}}</span>
+                    </li>
+                    <li>
+                      <span class="name">N° Recibo: </span>
+                      <span class="about">{{amount.order_id}}</span>
+                    </li>
+                    <li>
+                      <span class="name">Total pagado:</span>
+                      <span class="about ">$. {{amount.primaTotal.dolar}}</span>
+                    </li>
+                  </ul>
+                </div>	
+              </div>
+          </div>
+        </div>
+        <a (click)="openModal()" class="btn px-3 btn-thin rounded btn-secondary w-100">
+          <i class="fa-sharp text-primary fa-solid fa-share font-15 m-1"></i>
+       Compartir
+      </a>
+
+      <br><br>
+          <a [routerLink]="['/admin/cotizacion']" class="btn px-3 text-dark btn-thin rounded btn-primary w-100">
+          <i class="fa-sharp text-primary fa-solid fa-share font-15 m-1"></i>
+       Salir
+      </a>
+      </div>
+    </div>
+  </div>  
+  </div>
+
+
+   <div *ngIf="isModalOpen" class="modal">
+        <div class="modal-content">
+            <span class="close" (click)="closeModal()">&times;</span>
+            <h3 class="title">Compartir</h3>
+            <div class="share-icons">
+                <a (click)="downloadPolicy()">
+                    <img src="../../../assets/imagenes/icon/Dowloands.png" alt="Dowloands">
+                  </a>
+                <a (click)="shareByWhatsapp()">
+                  <img src="../../../assets/imagenes/icon/wpp.png" alt="WhatsApp">
+                </a>
+                <a (click)="shareByEmail()">
+                  <img src="../../../assets/imagenes/icon/gmail-icon.png" alt="Gmail">
+                </a>
+              </div>
+        </div>
+    </div>
+  
+  <div class="toast-container" id="finally"></div>
